@@ -11,8 +11,8 @@ MLX_FLAG =  -Lmlx -lmlx -Llib/minilibx-linux -Imlx_linux -lXext -lX11 -lm -lz
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	#@make -C lib/minilibx-linux
-	gcc $(OBJ) $(MLX_FLAG)  $(INCLUDES)  -o $(NAME)
+	@make -C lib/minilibx-linux
+	gcc $(OBJ) $(MLX_FLAG) $(INCLUDES)  -o $(NAME)
 
 %.o: %.c
 	gcc $(MLX_FLAG) $(INCLUDES)  -c $< -o $@
