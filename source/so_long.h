@@ -10,5 +10,7 @@ typedef struct s_game
 	void	*game_window;
 }	t_game;
 
+void	game_start(t_game *game);
+
 
 #endif
