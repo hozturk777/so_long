@@ -10,19 +10,14 @@ all: $(NAME)
 $(NAME): $(OBJ)
 	ar rcs $(NAME) $(OBJ)
 
-%.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
-
-all: $(NAME)
+$(OBJ) : so_long.h
 
 clean:
-	@rm -rf $(OBJ_DIR)
-	@echo "\033[0;32mObje dosyaları temizlendi.\033[0m"
+	rm -rf $(OBJ)
 
 fclean: clean
-	@rm -rf $(NAME)
-	@echo "\033[0;32mTüm derleme dosyaları temizlendi.\033[0m"
+	rm -rf $(NAME)
 
 re: fclean all
 
-.PHONY: re fclean clean all 
+.PHONY: re all clean fclean

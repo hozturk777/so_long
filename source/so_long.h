@@ -1,5 +1,5 @@
-#ifndef SO_LONG
-# define SO_LONG
+#ifndef SO_LONG_H
+# define SO_LONG_H
 
 #include "../lib/minilibx-linux/mlx.h"
 #include "../lib/minilibx-linux/mlx_int.h"

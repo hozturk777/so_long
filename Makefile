@@ -1,21 +1,19 @@
 NAME = siksok
 SRC = source/main.c
 OBJ = $(SRC:%.c=%.o)
-INCLUDES = -I./lib/minilibx-linux
 
+CFLAGS = -Wall -Wextra -Werror
 
-# CFLAGS = -Wall -Wextra -Werror
-
-MLX_FLAG =  -Lmlx -lmlx -Llib/minilibx-linux -Imlx_linux -lXext -lX11 -lm -lz
-
+MLX_FLAG = -Lsource -l:so_long.a -Lmlx -lmlx -Llib/minilibx-linux -Imlx_linux -lXext -lX11 -lm -lz 
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	@make -C lib/minilibx-linux
-	gcc $(OBJ) $(MLX_FLAG) $(INCLUDES)  -o $(NAME)
+	# @make -C lib/minilibx-linux
+	@make -C source
+	gcc $(OBJ) $(MLX_FLAG)   -o $(NAME)
 
 %.o: %.c
-	gcc $(MLX_FLAG) $(INCLUDES)  -c $< -o $@
+	gcc $(MLX_FLAG)   -c $< -o $@
 
 all: $(NAME)
 
