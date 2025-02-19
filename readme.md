@@ -1,4 +1,5 @@
 🏆 Maze Of Keys(Anahtar Labirenti) 🏆
+
 Oyun Hikayesi:
     Bir zamanlar huzurlu bir krallık, gizemli bir labirentle çevriliydi.
     Efsaneye göre, labirentin derinliklerinde,krallığın kaybolan anahtar parçaları bulunuyor.

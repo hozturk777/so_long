@@ -5,6 +5,13 @@
 #include "../lib/minilibx-linux/mlx_int.h"
 #include "../lib/ft_printf/ft_printf.h"
 
+// Tuş kodları
+#define KEY_W 119
+#define KEY_A 97
+#define KEY_S 115
+#define KEY_D 100
+#define KEY_ESC 65307
+
 typedef struct s_game
 {
 	void    *game_init;      // MiniLibX başlangıç pointer'ı
@@ -16,8 +23,12 @@ typedef struct s_game
 
     int     player_x;        // Oyuncunun X konumu
     int     player_y;        // Oyuncunun Y konumu
-	int     player_width;        // Oyuncunun X konumu
-    int     player_height;        // Oyuncunun Y konumu
+	int     player_width;        // Oyuncunun genişlik
+    int     player_height;        // Oyuncu yükseklik
+    int     player_up;
+    int     player_down;
+    int     player_right;
+    int     player_left;
 
     int     key_count;       // Toplam toplanması gereken anahtar parçası
     int     collected_keys;  // Oyuncunun topladığı anahtar parçaları
@@ -32,6 +43,13 @@ typedef struct s_game
     void    *key_img;        // Anahtar parçası sprite'ı
     void    *exit_img;       // Çıkış kapısı sprite'ı
 }	t_game;
+
+t_game game = {
+    .player_up = 0,
+    .player_down = 0,
+    .player_left = 0,
+    .player_right = 0,
+};
 
 void	game_start(t_game *game);
 void	game_open_window(t_game *game);
