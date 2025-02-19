@@ -44,15 +44,12 @@ typedef struct s_game
     void    *exit_img;       // Çıkış kapısı sprite'ı
 }	t_game;
 
-t_game game = {
-    .player_up = 0,
-    .player_down = 0,
-    .player_left = 0,
-    .player_right = 0,
-};
-
 void	game_start(t_game *game);
 void	game_open_window(t_game *game);
 int	render_character_img(t_game *game);
+int	key_press(int keycode, t_game *game);
+int	key_release(int keycode, t_game *game);
+
+
 
 #endif

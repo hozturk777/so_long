@@ -1,5 +1,6 @@
 NAME = so_long.a
-SRC = game_init.c 
+SRC = game_init.c \
+		player_controller.c 
 OBJ = $(SRC:%.c=%.o)
 
 
