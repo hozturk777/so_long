@@ -13,3 +13,5 @@ Oyun Mekaniği:
     Ancak çıkışa ulaşmadan önce labirent içinde bulunan tüm anahtarları toplamak zorunda.
     Oyuncu sadece WASD ile hareket edebilir.
 
+ToDo:
+    Map & Level

@@ -19,7 +19,7 @@ $(NAME): $(OBJ)
 all: $(NAME)
 
 clean:
-	@rm -rf $(OBJ_DIR)
+	@rm -rf $(OBJ)
 
 	@echo "\033[0;32mObje dosyaları temizlendi.\033[0m"
 

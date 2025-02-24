@@ -23,10 +23,17 @@ int	main()
 		return 1;
 	}
 
+	game->map = read_map("../map/map1.ber");
+	if (!game->map)
+	{
+		ft_printf("Harita Yuklenemedi!");
+		return 1;
+	}
+	render_map(game);
+
 	// mlx_key_hook(game->game_window, key_press, game);
 	mlx_hook(game->game_window, 2, 1L << 0, key_press, game);
 	mlx_hook(game->game_window, 3, 1L << 1, key_release, game);
-
 
 	mlx_loop(game->game_init);
 }
