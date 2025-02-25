@@ -12,9 +12,19 @@ char	**read_map(char *map_path)
 	if (fd < 0)
 		return (NULL);
 	joined_map = NULL;
-	while (condition)
+	while ((line = get_next_line(fd)))
 	{
-		/* code */
+		temp = joined_map;
+		joined_map = ft_strjoin(joined_map, line);
+		free(temp);
+		free(line);	
 	}
+	close(fd);
+
+	if (!joined_map)
+		return (NULL);
 	
+	map = ft_split(joined_map, '\n');
+	free(joined_map);
+	return (map);
 }

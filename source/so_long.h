@@ -4,6 +4,9 @@
 #include "../lib/minilibx-linux/mlx.h"
 #include "../lib/minilibx-linux/mlx_int.h"
 #include "../lib/ft_printf/ft_printf.h"
+#include "../lib/libft/libft.h"
+#include "../lib/get_next_line/get_next_line.h"
+
 
 // Tuş kodları
 #define KEY_W 119
