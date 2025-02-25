@@ -8,9 +8,10 @@ MLX_FLAG =  -Lmlx -lmlx -Llib/minilibx-linux -Imlx_linux -lXext -lX11 -lm -lz
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	# @make -C lib/minilibx-linux
+	@make -C lib/minilibx-linux
 	@make -C source
 	@make -C lib/ft_printf
+	@make -C lib/libft
 	gcc $(OBJ) $(LIB_FLAG) $(MLX_FLAG)   -o $(NAME)
 
 %.o: %.c

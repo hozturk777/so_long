@@ -11,6 +11,7 @@
 #define KEY_S 115
 #define KEY_D 100
 #define KEY_ESC 65307
+#define TILE_SIZE 24
 
 typedef struct s_game
 {
@@ -49,7 +50,7 @@ void	game_open_window(t_game *game);
 int	render_character_img(t_game *game);
 int	key_press(int keycode, t_game *game);
 int	key_release(int keycode, t_game *game);
-
+void	render_map(t_game *game);
 
 
 #endif
