@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "libft.h"
 #include <stdlib.h>
 #include <unistd.h>
 
@@ -70,12 +70,12 @@ static char	*ft_read_fd(char *str, int fd)
 	int		byte_readed;
 
 	byte_readed = 1;
-	buffer = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char));
+	buffer = (char *)malloc((42 + 1) * sizeof(char));
 	if (!buffer)
 		return (NULL);
 	while (!ft_strchr(str, '\n') && byte_readed != 0)
 	{
-		byte_readed = read(fd, buffer, BUFFER_SIZE);
+		byte_readed = read(fd, buffer, 42);
 		if (byte_readed == -1)
 			return (free(str), free(buffer), NULL);
 		buffer[byte_readed] = '\0';
@@ -89,7 +89,7 @@ char	*get_next_line(int fd)
 	static char	*str;
 	char		*line;
 
-	if (BUFFER_SIZE <= 0 || fd < 0)
+	if (42 <= 0 || fd < 0)
 		return (NULL);
 	str = ft_read_fd(str, fd);
 	if (!str)

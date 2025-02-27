@@ -4,9 +4,8 @@
 #include "../lib/minilibx-linux/mlx.h"
 #include "../lib/minilibx-linux/mlx_int.h"
 #include "../lib/ft_printf/ft_printf.h"
+// #include "../lib/get_next_line/get_next_line.h"
 #include "../lib/libft/libft.h"
-#include "../lib/get_next_line/get_next_line.h"
-
 
 // Tuş kodları
 #define KEY_W 119
@@ -54,6 +53,7 @@ int	render_character_img(t_game *game);
 int	key_press(int keycode, t_game *game);
 int	key_release(int keycode, t_game *game);
 void	render_map(t_game *game);
+char	**read_map(char *map_path);
 
 
 #endif

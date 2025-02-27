@@ -17,7 +17,7 @@ char	**read_map(char *map_path)
 		temp = joined_map;
 		joined_map = ft_strjoin(joined_map, line);
 		free(temp);
-		free(line);	
+		free(line);
 	}
 	close(fd);
 
