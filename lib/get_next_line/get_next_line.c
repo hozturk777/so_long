@@ -26,7 +26,7 @@ static char	*ft_after_line(char *str)
 		i++;
 	if (!str[i])
 		return (free(str), NULL);
-	newstr = malloc(ft_strlen(str) - i + 1);
+	newstr = malloc(ft_strlen_get(str) - i + 1);
 	if (!newstr)
 		return (free(str), NULL);
 	i++;
@@ -73,13 +73,13 @@ static char	*ft_read_fd(char *str, int fd)
 	buffer = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char));
 	if (!buffer)
 		return (NULL);
-	while (!ft_strchr(str, '\n') && byte_readed != 0)
+	while (!ft_strchr_get(str, '\n') && byte_readed != 0)
 	{
 		byte_readed = read(fd, buffer, BUFFER_SIZE);
 		if (byte_readed == -1)
 			return (free(str), free(buffer), NULL);
 		buffer[byte_readed] = '\0';
-		str = ft_strjoin(str, buffer);
+		str = ft_strjoin_get(str, buffer);
 	}
 	return (free(buffer), str);
 }

@@ -23,7 +23,14 @@ int	main()
 		return 1;
 	}
 
-	game->map = read_map("../map/map1.ber");
+	if (!render_map_img(game))
+	{
+		// Resim yüklenemedi
+		ft_printf("Resim yüklenemedi!\n");
+		return 1;
+	}
+	
+	game->map = read_map("./map/map1.ber");
 	if (!game->map)
 	{
 		ft_printf("Harita Yuklenemedi!");

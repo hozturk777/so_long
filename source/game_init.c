@@ -14,8 +14,8 @@ int	render_character_img(t_game *game)
 {
 	game->player_img = mlx_xpm_file_to_image(game->game_init, "image/OneIdle.xpm", &game->player_width, &game->player_height);
 
-	game->player_x = 2;
-	game->player_y = 2;
+	game->player_x = 300;
+	game->player_y = 200;
 
 	if (!game->player_img)
 		return 1;
@@ -33,6 +33,8 @@ int	render_map_img(t_game *game)
 		return 1;
 
 	game->floor_img = mlx_xpm_file_to_image(game->game_init, "image/map/Floor.xpm", &x, &y);
+
+	mlx_put_image_to_window(game->game_init, game->game_window, game->wall_img, 200, 100);
 
 	(void)x;
 	(void)y;

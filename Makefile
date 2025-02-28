@@ -1,8 +1,9 @@
-NAME				= so_long
+NAME				= mazeofkeys
 LIBFT				= ./lib/libft/libft.a
 MINILIBX			= ./lib/minilibx-linux/libmlx_Linux.a
 PRINTF				= ./lib/ft_printf/libftprintf.a
 SRC_DIR				= source/
+GET_DIR				= lib/get_next_line/
 OBJ_DIR				= obj/
 CC					= cc
 # CFLAGS				= -Wall -Werror -Wextra
@@ -12,7 +13,10 @@ SO_LONG_DIR			= $(SRC_DIR)main.c \
 				 		$(SRC_DIR)game_init.c \
 				 		$(SRC_DIR)player_controller.c \
 				 		$(SRC_DIR)read_map.c \
-				 		$(SRC_DIR)render_map.c 
+				 		$(SRC_DIR)render_map.c \
+						$(GET_DIR)get_next_line.c \
+						$(GET_DIR)get_next_line_utils.c
+
 
 SRCS 				= $(SO_LONG_DIR)
 
@@ -21,7 +25,7 @@ OBJ 				= $(patsubst $(SRC_DIR)%.c,$(OBJ_DIR)%.o,$(SRCS))
 all: 				$(NAME)
 
 $(NAME): 			$(OBJ) $(LIBFT) $(MINILIBX) $(PRINTF)
-					@$(CC) $(CFLA"G"S) $(OBJ) $(LIBFT) $(PRINTF) -Lmlx -lmlx -Llib/minilibx-linux -Imlx_linux -lXext -lX11 -lm -lz  -o $(NAME)
+					@$(CC) $(CFLA"G"S) $(OBJ) $(LIBFT) $(PRINTF) -g -Lmlx -lmlx -Llib/minilibx-linux -Imlx_linux -lXext -lX11 -lm -lz  -o $(NAME)
 
 $(LIBFT):
 					@make -C ./lib/libft
@@ -29,8 +33,8 @@ $(LIBFT):
 $(PRINTF):
 					@make -C ./lib/ft_printf
 
-$(MINILIBX):
-					@make -C ./lib/minilibx-linux
+# $(MINILIBX):
+# 					@make -C ./lib/minilibx-linux
 
 $(OBJ_DIR)%.o:		$(SRC_DIR)%.c
 					@mkdir -p $(@D)
@@ -39,7 +43,7 @@ $(OBJ_DIR)%.o:		$(SRC_DIR)%.c
 clean:
 					@$(RM) -r $(OBJ_DIR)
 					@make clean -C ./lib/libft
-					@make clean -C ./lib/minilibx-linux
+					# @make clean -C ./lib/minilibx-linux
 					@make clean -C ./lib/ft_printf
 
 fclean: 			clean
