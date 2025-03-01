@@ -12,10 +12,10 @@ void	game_open_window(t_game *game)
 
 int	render_character_img(t_game *game)
 {
-	game->player_img = mlx_xpm_file_to_image(game->game_init, "image/OneIdle.xpm", &game->player_width, &game->player_height);
+	game->player_img = mlx_xpm_file_to_image(game->game_init, "image/25_OneIdle_floor.xpm", &game->player_width, &game->player_height);
 
-	game->player_x = 300;
-	game->player_y = 200;
+	game->player_x = 0;
+	game->player_y = 0;
 
 	if (!game->player_img)
 		return 1;

@@ -16,13 +16,6 @@ int	main()
 	game->player_left = 0;
 	game->player_right = 0;
 
-	if (!render_character_img(game))
-	{
-		// Resim yüklenemedi
-		ft_printf("Resim yüklenemedi!\n");
-		return 1;
-	}
-
 	if (!render_map_img(game))
 	{
 		// Resim yüklenemedi
@@ -38,9 +31,19 @@ int	main()
 	}
 	render_map(game);
 
+	if (!render_character_img(game))
+	{
+		// Resim yüklenemedi
+		ft_printf("Resim yüklenemedi!\n");
+		return 1;
+	}
+
+	
+
 	// mlx_key_hook(game->game_window, key_press, game);
 	mlx_hook(game->game_window, 2, 1L << 0, key_press, game);
 	mlx_hook(game->game_window, 3, 1L << 1, key_release, game);
+	
 
 	mlx_loop(game->game_init);
 }
