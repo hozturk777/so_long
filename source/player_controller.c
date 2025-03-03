@@ -29,41 +29,63 @@ int	key_release(int keycode, t_game *game)
 
 void	key_press_line(t_game *game)
 {
+	int next_x = game->player_x;
+	int next_y = game->player_y;
+
 	if (game->player_up)
-		game->player_y -= 5;
+		next_y -= TILE_SIZE;
 	else if(game->player_down)
-		game->player_y += 5;
+		next_y += TILE_SIZE;
 	else if (game->player_left)
-		game->player_x -= 5;
+		next_x -= TILE_SIZE;
 	else if (game->player_right)
-		game->player_x += 5;
+		next_x += TILE_SIZE;
+	
+	// int x = game->player_x / TILE_SIZE;
+	// int y = game->player_y / TILE_SIZE;
+	// ft_printf("x: %d - y :%d - p_x: %d - p_y: %d\n", x, y, game->player_x, game->player_y);
+	// ft_printf("map_check: %c\n", game->map[x][y]);
+	// if (game->map[x][y] == '1')
+	// 	ft_printf("ENGELLENDI");
+
+	int map_x = next_x / TILE_SIZE;
+	int map_y = next_y / TILE_SIZE;
+
+	if (game->map[map_x][map_y] == '1')
+	{
+		ft_printf("ENGELLENDI\n");
+		return ;
+	}
+	
+	game->player_x = next_x;
+	game->player_y = next_y;
 }
 
 int	key_press(int keycode, t_game *game)
 {
 	key_press_control(keycode, game);
 
-	if (game->player_up && game->player_left)
-	{
-		game->player_x -= 5;
-		game->player_y -= 5;
-	}
-	else if (game->player_up && game->player_right)
-	{
-		game->player_x += 5;
-		game->player_y -= 5;
-	}
-	else if (game->player_down && game->player_left)
-	{
-		game->player_x -= 5;
-		game->player_y += 5;
-	}
-	else if (game->player_down && game->player_right)
-	{
-		game->player_x += 5;
-		game->player_y += 5;
-	}
-	else if (keycode == KEY_ESC)
+	// if (game->player_up && game->player_left)
+	// {
+	// 	game->player_x -= 5;
+	// 	game->player_y -= 5;
+	// }
+	// else if (game->player_up && game->player_right)
+	// {
+	// 	game->player_x += 5;
+	// 	game->player_y -= 5;
+	// }
+	// else if (game->player_down && game->player_left)
+	// {
+	// 	game->player_x -= 5;
+	// 	game->player_y += 5;
+	// }
+	// else if (game->player_down && game->player_right)
+	// {
+	// 	game->player_x += 5;
+	// 	game->player_y += 5;
+	// }
+	if (keycode == KEY_ESC)
     {
         mlx_destroy_window(game->game_init, game->game_window);
         exit(0);
@@ -72,11 +94,9 @@ int	key_press(int keycode, t_game *game)
 		key_press_line(game);
 		
 	// mlx_clear_window(game->game_init, game->game_window);
-	// mlx_put_image_to_window(game->game_init, game->game_window, game->floor_img, game->player_x, game->player_y+5);
-	// mlx_put_image_to_window(game->game_init, game->game_window, game->floor_img, game->player_x, game->player_y-5);
 	render_map(game);
 	mlx_put_image_to_window(game->game_init, game->game_window, game->player_img, game->player_x, game->player_y);
+	// mlx_put_image_to_window(game->game_init, game->game_window, game->floor_img, game->player_x, game->player_y+15);
 	
-
 	return 0;
 }

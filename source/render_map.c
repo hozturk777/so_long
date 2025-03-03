@@ -5,24 +5,23 @@ void    render_map(t_game *game)
     int	x;
 	int	y;
 
-	x = 0;
-	while (game->map[x])
+	y = 0;
+	while (game->map[y])
 	{
-		y = 0;
-		while (game->map[x][y])
+		x = 0;
+		while (game->map[y][x])
 		{
 
-			if (game->map[x][y] == '1')
+			if (game->map[y][x] == '1')
 			{
 				mlx_put_image_to_window(game->game_init, game->game_window, game->wall_img, y * TILE_SIZE, x * TILE_SIZE);
 			}
-			else if (game->map[x][y] == '0')
+			else if (game->map[y][x] == '0')
 			{
 				mlx_put_image_to_window(game->game_init, game->game_window, game->floor_img, y * TILE_SIZE, x * TILE_SIZE);
-				// mlx_put_image_to_window(game->game_init, game->game_window, game->floor_img, game->player_y * TILE_SIZE, game->player_x * TILE_SIZE );
 
 			}
-			else if (game->map[x][y] == 'P')
+			else if (game->map[y][x] == 'P')
 			{
 				mlx_put_image_to_window(game->game_init, game->game_window, game->player_img, y * TILE_SIZE, x * TILE_SIZE);
 
@@ -35,8 +34,9 @@ void    render_map(t_game *game)
 			// {
 			// 	mlx_put_image_to_window(game->game_init, game->game_window, game->key_img, x * TILE_SIZE, y * TILE_SIZE);
 			// }
-			y++;	
+			x++;	
 		}
-		x++;
+		y++;
 	}
+	ft_printf("map_x: %d map_y: %d\n", y, x);
 }
