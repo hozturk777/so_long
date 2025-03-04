@@ -33,13 +33,13 @@ void	key_press_line(t_game *game)
 	int next_y = game->player_y;
 
 	if (game->player_up)
-		next_y -= 24;
+		next_y -= TILE_SIZE;
 	else if(game->player_down)
-		next_y += 24;
+		next_y += TILE_SIZE;
 	else if (game->player_left)
-		next_x -= 24;
+		next_x -= TILE_SIZE;
 	else if (game->player_right)
-		next_x += 24;
+		next_x += TILE_SIZE;
 	
 	// int x = game->player_x / TILE_SIZE;
 	// int y = game->player_y / TILE_SIZE;
@@ -67,23 +67,23 @@ int	key_press(int keycode, t_game *game)
 
 	// if (game->player_up && game->player_left)
 	// {
-	// 	game->player_x -= 5;
-	// 	game->player_y -= 5;
+	// 	game->player_x -= TILE_SIZE;
+	// 	game->player_y -= TILE_SIZE;
 	// }
 	// else if (game->player_up && game->player_right)
 	// {
-	// 	game->player_x += 5;
-	// 	game->player_y -= 5;
+	// 	game->player_x += TILE_SIZE;
+	// 	game->player_y -= TILE_SIZE;
 	// }
 	// else if (game->player_down && game->player_left)
 	// {
-	// 	game->player_x -= 5;
-	// 	game->player_y += 5;
+	// 	game->player_x -= TILE_SIZE;
+	// 	game->player_y += TILE_SIZE;
 	// }
 	// else if (game->player_down && game->player_right)
 	// {
-	// 	game->player_x += 5;
-	// 	game->player_y += 5;
+	// 	game->player_x += TILE_SIZE;
+	// 	game->player_y += TILE_SIZE;
 	// }
 	if (keycode == KEY_ESC)
     {

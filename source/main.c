@@ -23,12 +23,12 @@ int	main(int ac, char **av)
 	}
 	
 	game->map = read_map(av[1]);
-	game_open_window(game);
 	if (!game->map)
 	{
 		ft_printf("Harita Yuklenemedi!");
 		return 1;
 	}
+	game_open_window(game);
 	render_map(game);
 
 	if (!render_character_img(game))
