@@ -7,7 +7,7 @@ void	game_start(t_game *game)
 
 void	game_open_window(t_game *game)
 {
-	game->game_window = mlx_new_window(game->game_init, 1200, 1000, "Maze Of Keys");
+	game->game_window = mlx_new_window(game->game_init, 600, 820, "Maze Of Keys");
 }
 
 int	render_character_img(t_game *game)
@@ -19,6 +19,7 @@ int	render_character_img(t_game *game)
 
 	if (!game->player_img)
 		return 1;
+	game->player_height -= 60;
 	mlx_put_image_to_window(game->game_init, game->game_window, game->player_img, game->player_x, game->player_y);
 }
 

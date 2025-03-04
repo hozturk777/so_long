@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-int	main()
+int	main(int ac, char **av)
 {
 	t_game *game;
 	void *img;
@@ -23,7 +23,7 @@ int	main()
 		return 1;
 	}
 	
-	game->map = read_map("./map/map1.ber");
+	game->map = read_map(av[1]);
 	if (!game->map)
 	{
 		ft_printf("Harita Yuklenemedi!");
@@ -37,6 +37,9 @@ int	main()
 		ft_printf("Resim yüklenemedi!\n");
 		return 1;
 	}
+
+	// mlx_destroy_window(game->game_init, game->game_window);
+	// game->game_window = mlx_new_window(game->game_init, game->map_width * TILE_SIZE, game->map_height * TILE_SIZE, "Maze Of Keys");
 
 	// mlx_key_hook(game->game_window, key_press, game);
 	mlx_hook(game->game_window, 2, 1L << 0, key_press, game);

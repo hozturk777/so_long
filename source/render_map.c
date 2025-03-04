@@ -39,4 +39,6 @@ void    render_map(t_game *game)
 		y++;
 	}
 	ft_printf("map_x: %d map_y: %d\n", y, x);
+	game->map_height = x;
+	game->map_width = y;
 }
