@@ -9,7 +9,6 @@ int	main(int ac, char **av)
 
 	game = (t_game *)malloc(sizeof(t_game));
 	game_start(game);
-	game_open_window(game);
 
 	game->player_up = 0;
 	game->player_down = 0;
@@ -24,6 +23,7 @@ int	main(int ac, char **av)
 	}
 	
 	game->map = read_map(av[1]);
+	game_open_window(game);
 	if (!game->map)
 	{
 		ft_printf("Harita Yuklenemedi!");
@@ -40,10 +40,12 @@ int	main(int ac, char **av)
 
 	// mlx_destroy_window(game->game_init, game->game_window);
 	// game->game_window = mlx_new_window(game->game_init, game->map_width * TILE_SIZE, game->map_height * TILE_SIZE, "Maze Of Keys");
-
+	
 	// mlx_key_hook(game->game_window, key_press, game);
 	mlx_hook(game->game_window, 2, 1L << 0, key_press, game);
 	mlx_hook(game->game_window, 3, 1L << 1, key_release, game);
+
+	
 
 	mlx_loop(game->game_init);
 }

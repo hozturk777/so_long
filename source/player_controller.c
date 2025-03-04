@@ -33,13 +33,13 @@ void	key_press_line(t_game *game)
 	int next_y = game->player_y;
 
 	if (game->player_up)
-		next_y -= TILE_SIZE;
+		next_y -= 24;
 	else if(game->player_down)
-		next_y += TILE_SIZE;
+		next_y += 24;
 	else if (game->player_left)
-		next_x -= TILE_SIZE;
+		next_x -= 24;
 	else if (game->player_right)
-		next_x += TILE_SIZE;
+		next_x += 24;
 	
 	// int x = game->player_x / TILE_SIZE;
 	// int y = game->player_y / TILE_SIZE;
@@ -95,8 +95,11 @@ int	key_press(int keycode, t_game *game)
 		
 	// mlx_clear_window(game->game_init, game->game_window);
 	render_map(game);
-	mlx_put_image_to_window(game->game_init, game->game_window, game->player_img, game->player_x, game->player_y);
+	mlx_put_image_to_window(game->game_init, game->game_window, game->player_img, game->player_x, game->player_y-17);
 	// mlx_put_image_to_window(game->game_init, game->game_window, game->floor_img, game->player_x, game->player_y+15);
+	// mlx_put_image_to_window(game->game_init, game->game_window, game->wall_img, game->player_x, game->player_y + (game->player_height - 17));
+	ft_printf("width: %d - height: %d\n", game->player_width, game->player_height);
+
 	
 	return 0;
 }

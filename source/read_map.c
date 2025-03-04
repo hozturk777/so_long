@@ -14,28 +14,7 @@ char	**read_map(char *map_path)
 	if (fd < 0)
 		return (NULL);
 	joined_map = NULL;
-	
-	// char *buff;
-	// line = get_next_line(fd);
-	// read(fd, buff, 100);
-	// ft_printf("%s\n", buff);
-	// exit(1);
 
-	// char *buff;
-	// line = get_next_line(fd);
-	// joined_map = ft_strjoin(joined_map, line);
-	// line = get_next_line(fd);
-	// joined_map = ft_strjoin(joined_map, line);
-	// line = get_next_line(fd);
-	// joined_map = ft_strjoin(joined_map, line);
-	// line = get_next_line(fd);
-	// joined_map = ft_strjoin(joined_map, line);
-	// line = get_next_line(fd);
-	// joined_map = ft_strjoin(joined_map, line);
-	// line = get_next_line(fd);
-	// joined_map = ft_strjoin(joined_map, line);
-	// ft_printf("%s\n", joined_map);
-	// exit(1);
 
 	while ((line = get_next_line(fd)))
 	{
@@ -43,7 +22,6 @@ char	**read_map(char *map_path)
 		joined_map = ft_strjoin(joined_map, line);
 		if (temp)
 			free(temp);
-
 		free(line);
 	}
 	close(fd);
