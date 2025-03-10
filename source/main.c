@@ -16,7 +16,7 @@ int	main(int ac, char **av)
 	game->player_right = 0;
 
 	if (!render_map_img(game))
-	{
+	{ 
 		// Resim yüklenemedi
 		ft_printf("Resim yüklenemedi!\n");
 		return 1;

@@ -13,7 +13,7 @@
 #define KEY_S 115
 #define KEY_D 100
 #define KEY_ESC 65307
-#define TILE_SIZE 24
+#define TILE_SIZE 48
 
 typedef struct s_game
 {

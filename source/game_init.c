@@ -7,16 +7,16 @@ void	game_start(t_game *game)
 
 void	game_open_window(t_game *game)
 {
-	game->game_window = mlx_new_window(game->game_init, 800, 600, "Maze Of Keys");
+	game->game_window = mlx_new_window(game->game_init, 1280, 720, "Maze Of Keys");
 }
 
 int	render_character_img(t_game *game)
 {
-	game->player_img = mlx_xpm_file_to_image(game->game_init, "image/25_OneIdle_floor-1.xpm", &game->player_width, &game->player_height);
+	game->player_img = mlx_xpm_file_to_image(game->game_init, "image/character/down1_48x48.xpm", &game->player_width, &game->player_height);
 
 	game->player_x = 5 * TILE_SIZE;
 	game->player_y = 5 * TILE_SIZE;
-
+	game->player_width += 15;
 	if (!game->player_img)
 		return 1;
 	mlx_put_image_to_window(game->game_init, game->game_window, game->player_img, game->player_x, game->player_y);
@@ -27,12 +27,12 @@ int	render_map_img(t_game *game)
 	int	x;
 	int	y;
 
-	game->wall_img = mlx_xpm_file_to_image(game->game_init, "image/map/Dungeon.xpm", &x, &y);
+	game->wall_img = mlx_xpm_file_to_image(game->game_init, "image/map/Dungeon48x48.xpm", &x, &y);
 
 	if (!game->wall_img)
 		return 1;
 
-	game->floor_img = mlx_xpm_file_to_image(game->game_init, "image/map/Floor.xpm", &x, &y);
+	game->floor_img = mlx_xpm_file_to_image(game->game_init, "image/map/Floor48x48.xpm", &x, &y);
 
 	(void)x;
 	(void)y;

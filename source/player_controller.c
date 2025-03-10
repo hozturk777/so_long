@@ -95,7 +95,7 @@ int	key_press(int keycode, t_game *game)
 		
 	// mlx_clear_window(game->game_init, game->game_window);
 	render_map(game);
-	mlx_put_image_to_window(game->game_init, game->game_window, game->player_img, game->player_x, game->player_y-17);
+	mlx_put_image_to_window(game->game_init, game->game_window, game->player_img, game->player_x, game->player_y);
 	// mlx_put_image_to_window(game->game_init, game->game_window, game->floor_img, game->player_x, game->player_y+15);
 	// mlx_put_image_to_window(game->game_init, game->game_window, game->wall_img, game->player_x, game->player_y + (game->player_height - 17));
 	ft_printf("width: %d - height: %d\n", game->player_width, game->player_height);
