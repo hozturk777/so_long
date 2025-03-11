@@ -1,6 +1,6 @@
 #include "so_long.h"
 
-void    render_map(t_game *game)
+void    map_put(t_game *game)
 {
     int	x;
 	int	y;

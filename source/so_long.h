@@ -53,8 +53,7 @@ int	render_character_img(t_game *game);
 int	render_map_img(t_game *game);
 int	key_press(int keycode, t_game *game);
 int	key_release(int keycode, t_game *game);
-void	render_map(t_game *game);
+void	map_put(t_game *game);
 char	**read_map(char *map_path);
-
 
 #endif
