@@ -3,18 +3,18 @@ LIBFT				= ./lib/libft/libft.a
 MINILIBX			= ./lib/minilibx-linux/libmlx_Linux.a
 PRINTF				= ./lib/ft_printf/libftprintf.a
 SRC_DIR				= source/
-SRC_MAP_DIR			= source/map
 GET_DIR				= lib/get_next_line/
 OBJ_DIR				= obj/
 CC					= cc
 # CFLAGS				= -Wall -Werror -Wextra
-RM					= rm -f
+RM					= rm -rf
 
 SO_LONG_DIR			= $(SRC_DIR)main.c \
 				 		$(SRC_DIR)game_init.c \
 				 		$(SRC_DIR)player_controller.c \
 				 		$(SRC_DIR)read_map.c \
-				 		$(SRC_DIR)map_render.c \
+				 		$(SRC_DIR)map/map_render.c \
+				 		$(SRC_DIR)map/map_check.c \
 						$(GET_DIR)get_next_line.c \
 						$(GET_DIR)get_next_line_utils.c
 

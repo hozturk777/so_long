@@ -37,6 +37,7 @@ char	**read_map(char *map_path)
 		free(line);
 	}
 	close(fd);
+	
 
 	if (!joined_map)
 		return (NULL);

@@ -5,10 +5,12 @@
 int	main(int ac, char **av)
 {
 	t_game *game;
-	void *img;
+	t_map	map;
 
 	game = (t_game *)malloc(sizeof(t_game));
+	game->map = &map;
 	game_start(game);
+
 
 	game->player_up = 0;
 	game->player_down = 0;
@@ -22,13 +24,17 @@ int	main(int ac, char **av)
 		return 1;
 	}
 	
-	game->map = read_map(av[1]);
+	game->map->map = read_map(av[1]);
+	map_size(game);
+
+
 	if (!game->map)
 	{
 		ft_printf("Harita Yuklenemedi!");
 		return 1;
 	}
 	game_open_window(game);
+	
 	map_put(game);
 
 	if (!render_character_img(game))

@@ -15,12 +15,20 @@
 #define KEY_ESC 65307
 #define TILE_SIZE 48
 
+typedef	struct s_map
+{
+	char	**map;
+	int		map_width;
+	int		map_height;
+} t_map;
+
+
 typedef struct s_game
 {
 	void    *game_init;      // MiniLibX başlangıç pointer'ı
     void    *game_window;    // Oyun penceresi
 
-    char    **map;           // Haritanın 2D dizi olarak tutulması
+    t_map    *map;           // Haritanın 2D dizi olarak tutulması
     int     map_width;       // Haritanın genişliği
     int     map_height;      // Haritanın yüksekliği
 
@@ -55,5 +63,6 @@ int	key_press(int keycode, t_game *game);
 int	key_release(int keycode, t_game *game);
 void	map_put(t_game *game);
 char	**read_map(char *map_path);
+void	map_size(t_game *game);
 
 #endif
