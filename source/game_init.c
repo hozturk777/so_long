@@ -7,7 +7,9 @@ void	game_start(t_game *game)
 
 void	game_open_window(t_game *game)
 {
-	game->game_window = mlx_new_window(game->game_init, 1280, 720, "Maze Of Keys");
+	int	i = game->map->map_width * TILE_SIZE ;
+	int j = game->map->map_height * TILE_SIZE ;
+	game->game_window = mlx_new_window(game->game_init, i, j, "Maze Of Keys");
 }
 
 int	render_character_img(t_game *game)
@@ -16,7 +18,7 @@ int	render_character_img(t_game *game)
 
 	game->player_x = 5 * TILE_SIZE;
 	game->player_y = 5 * TILE_SIZE;
-	game->player_width += 15;
+	// game->player_width += 15;
 	if (!game->player_img)
 		return 1;
 	mlx_put_image_to_window(game->game_init, game->game_window, game->player_img, game->player_x, game->player_y);

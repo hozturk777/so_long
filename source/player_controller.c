@@ -43,7 +43,7 @@ void	key_press_line(t_game *game)
 	int map_x = next_x / TILE_SIZE;
 	int map_y = next_y / TILE_SIZE;
 
-	if (game->map->map[map_x][map_y] == '1')
+	if (game->map->map[map_y][map_x] == '1')
 	{
 		ft_printf("ENGELLENDI\n");
 		return ;

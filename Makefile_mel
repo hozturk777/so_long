@@ -1,0 +1,47 @@
+CC = gcc
+# CFLAGS = -Wall -Wextra -Werror
+
+# Kütüphaneler ve Dahili Dosyalar
+LIBFT_DIR = 
+PRINTF_DIR = lib/printf
+MLX_DIR = ./lib/minilibx-linux/libmlx_Linux.a
+GET_DIR	= ./lib/get_next_line/
+LIBFT = ./lib/libft/libft.a
+PRINTF = ./lib/ft_printf/libftprintf.a
+MLX = -Lmlx -lmlx -Llib/minilibx-linux -Imlx_linux -lXext -lX11 -lm -lz
+
+# Kaynak Kodlar
+SRC_DIR = source/
+SRC = $(SRC_DIR)main.c \
+				 		$(SRC_DIR)game_init.c \
+				 		$(SRC_DIR)player_controller.c \
+				 		$(SRC_DIR)read_map.c \
+				 		$(SRC_DIR)map/map_render.c \
+				 		$(SRC_DIR)map/map_check.c \
+						$(GET_DIR)get_next_line.c \
+						$(GET_DIR)get_next_line_utils.c
+OBJ = $(SRC:.c=.o)
+
+# Çıktı Dosyası
+OUT = so_long
+
+# Derleme Kuralları
+all: $(LIBFT) $(PRINTF) $(OUT)
+
+$(OUT): $(OBJ) $(LIBFT) $(PRINTF)
+	$(CC) $(OBJ) $(LIBFT) $(PRINTF) $(MLX)  -o $(OUT)
+
+
+%.o: %.c
+	$(CC) -c $< $(CFLAGS) $(INCLUDES) -o $@
+
+# Temizleme İşlemleri
+clean:
+	rm -f $(OBJ)
+
+fclean: clean
+	rm -f $(OUT)
+
+re: fclean all
+
+.PHONY: all clean fclean re
