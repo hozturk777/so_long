@@ -23,6 +23,10 @@ int	main(int ac, char **av)
 		ft_printf("Resim yüklenemedi!\n");
 		return 1;
 	}
+	if (check_map_validity())
+	{
+		/* code */
+	}
 	
 	game->map->map = read_map(av[1]);
 	map_size(game);

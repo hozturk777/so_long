@@ -12,7 +12,7 @@ RM					= rm -rf
 SO_LONG_DIR			= $(SRC_DIR)main.c \
 				 		$(SRC_DIR)game_init.c \
 				 		$(SRC_DIR)player_controller.c \
-				 		$(SRC_DIR)read_map.c \
+				 		$(SRC_DIR)map/read_map.c \
 				 		$(SRC_DIR)map/map_render.c \
 				 		$(SRC_DIR)map/map_check.c \
 						$(GET_DIR)get_next_line.c \

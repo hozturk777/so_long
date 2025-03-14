@@ -40,6 +40,7 @@ typedef struct s_game
     int     player_down;
     int     player_right;
     int     player_left;
+	int		step_count;
 
     int     key_count;       // Toplam toplanması gereken anahtar parçası
     int     collected_keys;  // Oyuncunun topladığı anahtar parçaları
