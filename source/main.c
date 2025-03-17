@@ -19,26 +19,25 @@ int	main(int ac, char **av)
 
 	if (!render_map_img(game))
 	{ 
-		// Resim yüklenemedi
 		ft_printf("Resim yüklenemedi!\n");
 		return 1;
 	}
-	if (check_map_validity())
-	{
-		/* code */
-	}
+	
 	
 	game->map->map = read_map(av[1]);
 	map_size(game);
-
+	if (!check_map_validity(av[1], game->map_width, game->map_height, 0, 0))
+	{
+		ft_printf("CHECK_MAP_VALIDITY\n");
+	}
 
 	if (!game->map)
 	{
 		ft_printf("Harita Yuklenemedi!");
 		return 1;
 	}
-	game_open_window(game);
 	
+	game_open_window(game);
 	map_put(game);
 
 	if (!render_character_img(game))
@@ -46,6 +45,8 @@ int	main(int ac, char **av)
 		ft_printf("Resim yüklenemedi!\n");
 		return 1;
 	}
+
+	
 
 	mlx_hook(game->game_window, 2, 1L << 0, key_press, game);
 	mlx_hook(game->game_window, 3, 1L << 1, key_release, game);

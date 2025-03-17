@@ -15,6 +15,13 @@
 #define KEY_ESC 65307
 #define TILE_SIZE 48
 
+typedef struct s_counts
+{
+	int	e_count;
+	int	p_count;
+	int	c_count;
+} t_counts;
+
 typedef	struct s_map
 {
 	char	**map;
@@ -65,5 +72,6 @@ int	key_release(int keycode, t_game *game);
 void	map_put(t_game *game);
 char	**read_map(char *map_path);
 void	map_size(t_game *game);
+int	check_map_validity(char *map_path, int width, int height, int start_x, int start_y);
 
 #endif

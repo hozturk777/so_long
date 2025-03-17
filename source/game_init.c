@@ -11,13 +11,35 @@ void	game_open_window(t_game *game)
 	int j = game->map->map_height * TILE_SIZE ;
 	game->game_window = mlx_new_window(game->game_init, i, j, "Maze Of Keys");
 }
+void find_player_start(t_game *game)
+{
+	int	x;
+	int	y;
+
+	y = 0;
+	while (game->map->map[y])
+	{
+		x = 0;
+		while (game->map->map[y][x])
+		{
+			if (game->map->map[y][x] == 'P')
+			{
+				game->player_x = x * TILE_SIZE;
+				game->player_y = y * TILE_SIZE;
+				return ;
+			}
+			x++;
+		}
+		y++;
+	}
+	
+}
 
 int	render_character_img(t_game *game)
 {
 	game->player_img = mlx_xpm_file_to_image(game->game_init, "image/character/down1_48x48.xpm", &game->player_width, &game->player_height);
 
-	game->player_x = 5 * TILE_SIZE;
-	game->player_y = 5 * TILE_SIZE;
+	find_player_start(game);
 	// game->player_width += 15;
 	if (!game->player_img)
 		return 1;

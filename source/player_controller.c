@@ -57,8 +57,8 @@ void	key_press_line(t_game *game, int next_x, int next_y)
 
 int	key_press(int keycode, t_game *game)
 {
-	int next_x = game->player_x;
-	int next_y = game->player_y;
+	// int next_x = game->player_x;
+	// int next_y = game->player_y;
 
 	key_press_control(keycode, game);
 
@@ -68,7 +68,7 @@ int	key_press(int keycode, t_game *game)
         exit(0);
 	}
 	else
-		key_press_line(game, next_x, next_y);
+		key_press_line(game, game->player_x, game->player_y);
 
 	// mlx_clear_window(game->game_init, game->game_window);
 	map_put(game);
