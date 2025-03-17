@@ -28,7 +28,6 @@ void	flood_file(char **map, int x, int y, t_counts *counts)
 {
 	if (map[y][x] == '1')
 		return ;
-
 	if (map[y][x] == 'P')
 		counts->p_count++;
 	else if (map[y][x] == 'E')
@@ -37,7 +36,6 @@ void	flood_file(char **map, int x, int y, t_counts *counts)
 		counts->c_count++;
 
 	map[y][x] = '1';
-
 	flood_file(map, x + 1, y, counts);
 	flood_file(map, x - 1, y, counts);
 	flood_file(map, x, y + 1, counts);
@@ -49,7 +47,7 @@ int	check_remaining_elements(char **map_clone)
 	int	y;
 
 	y = 0;
-	while (map_clone[y][x])
+	while (map_clone[y])
 	{
 		x = 0;
 		while (map_clone[y][x])
@@ -63,17 +61,19 @@ int	check_remaining_elements(char **map_clone)
 	return (1);
 }
 
-int	check_map_validity(char *map_path, int width, int height, int start_x, int start_y)
+int	check_map_validity(char *map_path, int start_x, int start_y)
 {
 	char	**map_clone;
 	t_counts counts;
+	counts.c_count = 0;
+	counts.p_count = 0;
+	counts.e_count = 0;
 	map_clone = read_map(map_path);
 	if (!map_clone)
 		return (0);
-	
 	flood_file(map_clone, start_x, start_y, &counts);
 	ft_printf("p_count: %d - e_count: %d - c_count: %d\n", counts.p_count, counts.e_count, counts.c_count);
-	if (counts.p_count != 1 && counts.e_count != 1)
+	if (counts.p_count != 1 || counts.e_count != 1)
 		return (0);		//ERRORCONTROL
 	if (!check_remaining_elements(map_clone))
 		return (0);		//ERRORCONTROL

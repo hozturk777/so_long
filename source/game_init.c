@@ -42,8 +42,9 @@ int	render_character_img(t_game *game)
 	find_player_start(game);
 	// game->player_width += 15;
 	if (!game->player_img)
-		return 1;
+		return (0);
 	mlx_put_image_to_window(game->game_init, game->game_window, game->player_img, game->player_x, game->player_y);
+	return (1);
 }
 
 int	render_map_img(t_game *game)
@@ -54,7 +55,7 @@ int	render_map_img(t_game *game)
 	game->wall_img = mlx_xpm_file_to_image(game->game_init, "image/map/Dungeon48x48.xpm", &x, &y);
 
 	if (!game->wall_img)
-		return 1;
+		return (0);
 
 	game->floor_img = mlx_xpm_file_to_image(game->game_init, "image/map/Floor48x48.xpm", &x, &y);
 
@@ -62,5 +63,19 @@ int	render_map_img(t_game *game)
 	(void)y;
 
 	if (!game->floor_img)
-		return 1;
+		return (0);
+	return (1);
+}
+int	render_collect_img(t_game *game)
+{
+	int	x;
+	int	y;
+
+	game->key_img = mlx_xpm_file_to_image(game->game_init, "image/collect/key48x48.xpm", &x, &y);
+
+	if (!game->key_img)
+		return (0);
+	(void)x;
+	(void)y;
+	return (1);
 }

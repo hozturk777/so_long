@@ -20,6 +20,8 @@ typedef struct s_counts
 	int	e_count;
 	int	p_count;
 	int	c_count;
+    
+	int	c_count_main;
 } t_counts;
 
 typedef	struct s_map
@@ -67,11 +69,12 @@ void	game_start(t_game *game);
 void	game_open_window(t_game *game);
 int	render_character_img(t_game *game);
 int	render_map_img(t_game *game);
+int	render_collect_img(t_game *game);
 int	key_press(int keycode, t_game *game);
 int	key_release(int keycode, t_game *game);
 void	map_put(t_game *game);
 char	**read_map(char *map_path);
 void	map_size(t_game *game);
-int	check_map_validity(char *map_path, int width, int height, int start_x, int start_y);
+int	check_map_validity(char *map_path, int start_x, int start_y);
 
 #endif
