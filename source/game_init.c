@@ -31,8 +31,7 @@ void find_player_start(t_game *game)
 			x++;
 		}
 		y++;
-	}
-	
+	}	
 }
 
 int	render_character_img(t_game *game)

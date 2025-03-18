@@ -21,7 +21,6 @@ void	map_size(t_game *game)
 	h++;
 	game->map->map_width = w;
 	game->map->map_height = h;
-	// ft_printf("map_w: %d / map_h: %d", game->map->map_width, game->map->map_height);
 }
 
 void	flood_file(char **map, int x, int y, t_counts *counts)

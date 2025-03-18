@@ -59,6 +59,6 @@ int	main(int ac, char **av)
 	}
 
 	mlx_hook(game->game_window, 2, 1L << 0, key_press, game);
-	mlx_hook(game->game_window, 3, 1L << 1, key_release, game);
+	// mlx_hook(game->game_window, 3, 1L << 1, key_release, game);
 	mlx_loop(game->game_init);
 }
