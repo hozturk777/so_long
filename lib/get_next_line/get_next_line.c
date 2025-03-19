@@ -5,12 +5,13 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: huozturk <huozturk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/20 15:30:01 by huozturk           #+#    #+#             */
-/*   Updated: 2025/02/27 16:35:08 by huozturk         ###   ########.fr       */
+/*   Created: 2024/12/20 15:30:01 by huozturk          #+#    #+#             */
+/*   Updated: 2025/03/19 15:35:05 by huozturk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+#include "../libft/libft.h"
 #include <stdlib.h>
 #include <unistd.h>
 
@@ -26,7 +27,7 @@ static char	*ft_after_line(char *str)
 		i++;
 	if (!str[i])
 		return (free(str), NULL);
-	newstr = malloc(ft_strlen_get(str) - i + 1);
+	newstr = ft_calloc(ft_strlen_get(str) - i + 1, sizeof(char));
 	if (!newstr)
 		return (free(str), NULL);
 	i++;
@@ -47,9 +48,9 @@ static char	*ft_line(char *str)
 	while (str[i] != '\n' && str[i] != '\0')
 		i++;
 	if (str[i] == '\n')
-		line = malloc(i + 2);
+		line = ft_calloc(i + 2, sizeof(char));
 	else
-		line = malloc(i + 1);
+		line = ft_calloc(i + 1, sizeof(char));
 	if (!line)
 		return (free(str), NULL);
 	i = 0;
@@ -70,7 +71,7 @@ static char	*ft_read_fd(char *str, int fd)
 	int		byte_readed;
 
 	byte_readed = 1;
-	buffer = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char));
+	buffer = (char *)ft_calloc((BUFFER_SIZE + 1), sizeof(char));
 	if (!buffer)
 		return (NULL);
 	while (!ft_strchr_get(str, '\n') && byte_readed != 0)

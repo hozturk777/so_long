@@ -6,7 +6,7 @@
 /*   By: huozturk <huozturk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 16:17:04 by huozturk          #+#    #+#             */
-/*   Updated: 2024/11/08 18:48:13 by huozturk         ###   ########.fr       */
+/*   Updated: 2025/03/19 15:19:11 by huozturk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	*ft_strdup(const char *s1)
 
 	slen = ft_strlen(s1);
 	i = 0;
-	str = (char *)malloc(slen + 1);
+	str = (char *)ft_calloc(slen + 1, sizeof(char));
 	if (!str)
 		return (NULL);
 	while (*(s1 + i) != '\0')

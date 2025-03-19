@@ -24,7 +24,7 @@ char	**read_map(char *map_path)
 
 	fd = open_file(map_path);
 
-	if (fd < 0)
+	if (fd <= 0)
 		return (NULL);
 	joined_map = NULL;
 
@@ -35,12 +35,11 @@ char	**read_map(char *map_path)
 		if (temp)
 			free(temp);
 		free(line);
+		// JOİNED MAP YOKSA CHECK
 	}
 	close(fd);
-	
 	if (!joined_map)
 		return (NULL);
-	
 	map = ft_split(joined_map, '\n');
 	free(joined_map);
 	return (map);

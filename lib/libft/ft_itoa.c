@@ -6,11 +6,12 @@
 /*   By: huozturk <huozturk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 12:26:39 by huozturk          #+#    #+#             */
-/*   Updated: 2024/11/07 13:03:58 by huozturk         ###   ########.fr       */
+/*   Updated: 2025/03/19 15:18:24 by huozturk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
+#include "libft.h"
 
 static int	ft_lennum(int n, int sign)
 {
@@ -42,7 +43,7 @@ char	*ft_itoa(int n)
 		sign = -1;
 	num *= sign;
 	lennum = ft_lennum(n, sign);
-	result = (char *)malloc((lennum + 1) * sizeof(char));
+	result = (char *)ft_calloc((lennum + 1), sizeof(char));
 	if (!result)
 		return (NULL);
 	*(result + lennum) = '\0';

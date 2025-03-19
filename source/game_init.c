@@ -3,13 +3,15 @@
 void	game_start(t_game *game)
 {
 	game->game_init = mlx_init();
+	error_control(game, "mlx_init failed", game->game_init);
 }
 
 void	game_open_window(t_game *game)
 {
-	int	i = game->map->map_width * TILE_SIZE ;
-	int j = game->map->map_height * TILE_SIZE ;
+	int	i = game->map.map_width * TILE_SIZE ;
+	int j = game->map.map_height * TILE_SIZE ;
 	game->game_window = mlx_new_window(game->game_init, i, j, "Maze Of Keys");
+	error_control(game, "cant open window", game->game_window);
 }
 void find_player_start(t_game *game)
 {
@@ -17,12 +19,12 @@ void find_player_start(t_game *game)
 	int	y;
 
 	y = 0;
-	while (game->map->map[y])
+	while (game->map.map[y])
 	{
 		x = 0;
-		while (game->map->map[y][x])
+		while (game->map.map[y][x])
 		{
-			if (game->map->map[y][x] == 'P')
+			if (game->map.map[y][x] == 'P')
 			{
 				game->player_x = x * TILE_SIZE;
 				game->player_y = y * TILE_SIZE;
@@ -34,47 +36,23 @@ void find_player_start(t_game *game)
 	}	
 }
 
-int	render_character_img(t_game *game)
+void	render_character_img(t_game *game)
 {
-	game->player_img = mlx_xpm_file_to_image(game->game_init, "image/character/down1_48x48.xpm", &game->player_width, &game->player_height);
-
 	find_player_start(game);
-	// game->player_width += 15;
-	if (!game->player_img)
-		return (0);
 	mlx_put_image_to_window(game->game_init, game->game_window, game->player_img, game->player_x, game->player_y);
-	return (1);
 }
 
-int	render_map_img(t_game *game)
+int *new_image(t_game *game)
 {
-	int	x;
+	int x;
 	int	y;
 
+	game->player_img = mlx_xpm_file_to_image(game->game_init, "image/character/down1_48x48.xpm", &game->player_width, &game->player_height);
 	game->wall_img = mlx_xpm_file_to_image(game->game_init, "image/map/Dungeon48x48.xpm", &x, &y);
-
-	if (!game->wall_img)
-		return (0);
-
 	game->floor_img = mlx_xpm_file_to_image(game->game_init, "image/map/Floor48x48.xpm", &x, &y);
-
-	(void)x;
-	(void)y;
-
-	if (!game->floor_img)
-		return (0);
-	return (1);
-}
-int	render_collect_img(t_game *game)
-{
-	int	x;
-	int	y;
-
 	game->key_img = mlx_xpm_file_to_image(game->game_init, "image/collect/key48x48.xpm", &x, &y);
 
-	if (!game->key_img)
-		return (0);
-	(void)x;
-	(void)y;
-	return (1);
+	if (!game->player_img || !game->wall_img || !game->floor_img || !game->key_img)
+		error_control(game, "img open failed", NULL);
+	return (0);
 }

@@ -1,4 +1,4 @@
-NAME				= mazeofkeys
+NAME				= so_long
 LIBFT				= ./lib/libft/libft.a
 MINILIBX			= ./lib/minilibx-linux/libmlx_Linux.a
 PRINTF				= ./lib/ft_printf/libftprintf.a
@@ -15,9 +15,9 @@ SO_LONG_DIR			= $(SRC_DIR)main.c \
 				 		$(SRC_DIR)map/read_map.c \
 				 		$(SRC_DIR)map/map_render.c \
 				 		$(SRC_DIR)map/map_check.c \
+						$(SRC_DIR)error/errors_handle.c \
 						$(GET_DIR)get_next_line.c \
-						$(GET_DIR)get_next_line_utils.c
-
+						$(GET_DIR)get_next_line_utils.c 
 
 SRCS 				= $(SO_LONG_DIR)
 

@@ -37,7 +37,7 @@ typedef struct s_game
 	void    *game_init;      // MiniLibX başlangıç pointer'ı
     void    *game_window;    // Oyun penceresi
 
-    t_map    *map;           // Haritanın 2D dizi olarak tutulması
+    t_map   map;           // Haritanın 2D dizi olarak tutulması
     int     map_width;       // Haritanın genişliği
     int     map_height;      // Haritanın yüksekliği
 
@@ -45,10 +45,6 @@ typedef struct s_game
     int     player_y;        // Oyuncunun Y konumu
 	int     player_width;        // Oyuncunun genişlik
     int     player_height;        // Oyuncu yükseklik
-    int     player_up;
-    int     player_down;
-    int     player_right;
-    int     player_left;
 	int		step_count;
 
     int     key_count;       // Toplam toplanması gereken anahtar parçası
@@ -67,14 +63,17 @@ typedef struct s_game
 
 void	game_start(t_game *game);
 void	game_open_window(t_game *game);
-int	render_character_img(t_game *game);
-int	render_map_img(t_game *game);
-int	render_collect_img(t_game *game);
-int	key_press(int keycode, t_game *game);
-int	key_release(int keycode, t_game *game);
+void	render_character_img(t_game *game);
+int 	*new_image(t_game *game);
+int		key_press(int keycode, t_game *game);
+int		key_release(int keycode, t_game *game);
 void	map_put(t_game *game);
 char	**read_map(char *map_path);
 void	map_size(t_game *game);
-int	check_map_validity(char *map_path, int start_x, int start_y);
+char	*check_map_validity(char *map_path, int start_x, int start_y, t_game *game);
+void	error_control(t_game *game, char *err_msg, void *ptr);
+void	array_free(char **arr);
+int		press_x(t_game *game);
+
 
 #endif
