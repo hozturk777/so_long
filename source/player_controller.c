@@ -1,6 +1,19 @@
-#include "so_long.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   player_controller.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: huozturk <huozturk@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/03/20 14:56:02 by huozturk          #+#    #+#             */
+/*   Updated: 2025/03/20 17:45:21 by huozturk         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-void	key_press_control(t_game *game, int *next_x, int *next_y, int keycode)
+#include "so_long.h"
+#include "../lib/minilibx-linux/mlx.h"
+
+void	key_press_control(int *next_x, int *next_y, int keycode)
 {
 	if (keycode == KEY_W)
 		*next_y -= TILE_SIZE;
@@ -17,7 +30,7 @@ void	key_press_line(t_game *game, int next_x, int next_y, int keycode)
 	int	map_x;
 	int	map_y;
 
-	key_press_control(game, &next_x, &next_y, keycode);
+	key_press_control(&next_x, &next_y, keycode);
 	map_x = next_x / TILE_SIZE;
 	map_y = next_y / TILE_SIZE;
 	if (game->map.map[map_y][map_x] == '1')

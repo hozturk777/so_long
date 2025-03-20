@@ -6,10 +6,10 @@ SRC_DIR				= source/
 GET_DIR				= lib/get_next_line/
 OBJ_DIR				= obj/
 CC					= cc
-# CFLAGS				= -Wall -Werror -Wextra
+CFLAGS				= -Wall -Werror -Wextra
 RM					= rm -rf
 
-SO_LONG_DIR			= $(SRC_DIR)main.c \
+SO_LONG_DIR			= $(SRC_DIR)so_long.c \
 				 		$(SRC_DIR)game_init.c \
 				 		$(SRC_DIR)player_controller.c \
 				 		$(SRC_DIR)map/read_map.c \
@@ -21,12 +21,12 @@ SO_LONG_DIR			= $(SRC_DIR)main.c \
 
 SRCS 				= $(SO_LONG_DIR)
 
-OBJ 				= $(patsubst $(SRC_DIR)%.c,$(OBJ_DIR)%.o,$(SRCS))
+OBJ 				= $(patsubst $(SO_LONG_DIR)%.c,$(OBJ_DIR)%.o,$(SRCS))
 
 all: 				$(NAME)
 
 $(NAME): 			$(OBJ) $(LIBFT) $(MINILIBX) $(PRINTF)
-					@$(CC) $(CFLA"G"S) $(OBJ) $(LIBFT) $(PRINTF) -g -Lmlx -lmlx -Llib/minilibx-linux -Imlx_linux -lXext -lX11 -lm -lz  -o $(NAME)
+					$(CC) $(CFLAGS) $(OBJ) $(LIBFT) $(PRINTF) -g -Lmlx -lmlx -Llib/minilibx-linux -Imlx_linux -lXext -lX11 -lm -lz  -o $(NAME)
 
 $(LIBFT):
 					@make -C ./lib/libft

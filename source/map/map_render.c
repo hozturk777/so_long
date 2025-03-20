@@ -1,4 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   map_render.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: huozturk <huozturk@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/03/20 14:59:21 by huozturk          #+#    #+#             */
+/*   Updated: 2025/03/20 17:06:20 by huozturk         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../so_long.h"
+#include "../../lib/minilibx-linux/mlx.h"
 
 static void	put_image(t_game *game, void *img, int x, int y)
 {
@@ -22,7 +35,6 @@ void	map_put(t_game *game)
 			{
 				put_image(game, game->key_img, x * TILE_SIZE, y * TILE_SIZE);
 				game->key_count++;
-				ft_printf("key_count: %d\n", game->key_count);
 			}
 			else if (game->map.map[y][x] == 'E')
 				put_image(game, game->player_img, x * TILE_SIZE, y * TILE_SIZE);

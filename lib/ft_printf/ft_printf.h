@@ -3,20 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsyn <hsyn@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: huozturk <huozturk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 15:38:22 by huozturk          #+#    #+#             */
-/*   Updated: 2025/02/28 03:30:10 by hsyn             ###   ########.fr       */
+/*   Updated: 2024/12/09 17:24:05 by huozturk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
-int ft_printf(const char *, ...);
+int	ft_printf(const char *format, ...);
 int	ft_putchar(char c);
 int	ft_putstr(char *str);
-int ft_putnbr(long  num, const char checkidentifier, const char *type);
-int	ft_putnbrutility(unsigned long num, const char checkidentifier, const char *type);
+int	ft_putnbr(long decnum, unsigned long hexnum, const char check, int type);
 
 #endif

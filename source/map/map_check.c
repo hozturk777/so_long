@@ -1,21 +1,41 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   map_check.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: huozturk <huozturk@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/03/20 14:59:14 by huozturk          #+#    #+#             */
+/*   Updated: 2025/03/20 17:20:03 by huozturk         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../so_long.h"
 
 void	map_size(t_game *game)
 {
 	int	w;
 	int	h;
+	int	tmp;
 
 	h = 0;
-	w = 0;
+	tmp = 0;
 	error_control(game, "allocation map", game->map.map[h]);
 	while (game->map.map[h])
+	{
+		w = 0;
+		while (game->map.map[h][w])
+		{
+			w++;
+		}
+		if (h == 0)
+			tmp = w;
+		if (tmp != w)
+			error_control(game, "not rectanguler", NULL);
 		h++;
-	h--;
-	while (game->map.map[h][w])
-		w++;
-	h++;
-	game->map.map_width = w;
+	}
 	game->map.map_height = h;
+	game->map.map_width = w;
 }
 
 static void	wall_control(t_game *game, int x, int y)

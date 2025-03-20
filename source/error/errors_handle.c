@@ -1,4 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   errors_handle.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: huozturk <huozturk@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/03/20 14:55:52 by huozturk          #+#    #+#             */
+/*   Updated: 2025/03/20 17:45:46 by huozturk         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../so_long.h"
+#include "../../lib/minilibx-linux/mlx.h"
+#include <stdlib.h>
 
 void	array_free(char **arr)
 {
@@ -45,6 +59,7 @@ void	error_control(t_game *game, char *err_msg, void *ptr)
 int	press_x(t_game *game)
 {
 	end_game(game, 0);
+	return (0);
 }
 
 void	end_game(t_game *game, int status)
