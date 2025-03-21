@@ -6,7 +6,7 @@
 /*   By: huozturk <huozturk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 14:59:14 by huozturk          #+#    #+#             */
-/*   Updated: 2025/03/20 17:20:03 by huozturk         ###   ########.fr       */
+/*   Updated: 2025/03/22 01:32:01 by huozturk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static void	wall_control(t_game *game, int x, int y)
 
 void	flood_file(char **map, int x, int y, t_counts *counts)
 {
-	if (!map[y] || !map[y][x] || x < 0 || y < 0)
+	if (x < 0 || y < 0 || !map[y] || !map[y][x])
 		return ;
 	if (map[y][x] == '1' || map[y][x] == 'F')
 		return ;
@@ -63,10 +63,10 @@ void	flood_file(char **map, int x, int y, t_counts *counts)
 	else if (map[y][x] == 'C')
 		counts->c_count++;
 	map[y][x] = 'F';
-	flood_file(map, x + 1, y, counts);
 	flood_file(map, x - 1, y, counts);
-	flood_file(map, x, y + 1, counts);
+	flood_file(map, x + 1, y, counts);
 	flood_file(map, x, y - 1, counts);
+	flood_file(map, x, y + 1, counts);
 }
 
 int	check_remaining_elements(char **map_clone, t_game *game)
@@ -92,22 +92,24 @@ int	check_remaining_elements(char **map_clone, t_game *game)
 	return (1);
 }
 
-char	*check_map_validity(char *map_path, int x, int y, t_game *game)
+char	*check_map_validity(char *map_path, t_game *game)
 {
-	char		**map_clone;
 	t_counts	counts;
 
 	counts.c_count = 0;
 	counts.p_count = 0;
 	counts.e_count = 0;
-	map_clone = read_map(map_path);
-	if (!map_clone)
+	find_player_start(game);
+	game->map.map_clone = read_map(map_path);
+	if (!game->map.map_clone)
 		return ("allocation fail");
-	flood_file(map_clone, x, y, &counts);
-	if (counts.p_count != 1 || counts.e_count != 1)
-		return (array_free(map_clone), "wrong number of arguments");
-	if (!check_remaining_elements(map_clone, game))
-		return (array_free(map_clone), "unreachable object");
-	array_free(map_clone);
+	flood_file(game->map.map_clone,
+		game->player_height / 48,
+		game->player_y / 48,
+		&counts);
+	if (counts.p_count != 1 || counts.e_count != 1 || counts.c_count <= 0)
+		return (array_free(game->map.map_clone), "wrong number of arguments");
+	if (!check_remaining_elements(game->map.map_clone, game))
+		return (array_free(game->map.map_clone), "unreachable object");
 	return (NULL);
 }

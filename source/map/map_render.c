@@ -6,7 +6,7 @@
 /*   By: huozturk <huozturk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 14:59:21 by huozturk          #+#    #+#             */
-/*   Updated: 2025/03/20 17:06:20 by huozturk         ###   ########.fr       */
+/*   Updated: 2025/03/22 00:17:00 by huozturk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	map_put(t_game *game)
 				game->key_count++;
 			}
 			else if (game->map.map[y][x] == 'E')
-				put_image(game, game->player_img, x * TILE_SIZE, y * TILE_SIZE);
+				put_image(game, game->exit_img, x * TILE_SIZE, y * TILE_SIZE);
 			else
 				put_image(game, game->floor_img, x * TILE_SIZE, y * TILE_SIZE);
 			x++;

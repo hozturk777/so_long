@@ -34,8 +34,8 @@ $(LIBFT):
 $(PRINTF):
 					@make -C ./lib/ft_printf
 
-# $(MINILIBX):
-# 					@make -C ./lib/minilibx-linux
+$(MINILIBX):
+					@make -C ./lib/minilibx-linux
 
 $(OBJ_DIR)%.o:		$(SRC_DIR)%.c
 					@mkdir -p $(@D)
@@ -44,7 +44,7 @@ $(OBJ_DIR)%.o:		$(SRC_DIR)%.c
 clean:
 					@$(RM) -r $(OBJ_DIR)
 					@make clean -C ./lib/libft
-					# @make clean -C ./lib/minilibx-linux
+					@make clean -C ./lib/minilibx-linux
 					@make clean -C ./lib/ft_printf
 
 fclean: 			clean

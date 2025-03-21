@@ -6,7 +6,7 @@
 /*   By: huozturk <huozturk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 14:56:30 by huozturk          #+#    #+#             */
-/*   Updated: 2025/03/20 17:03:19 by huozturk         ###   ########.fr       */
+/*   Updated: 2025/03/22 00:12:24 by huozturk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ typedef struct s_counts
 typedef struct s_map
 {
 	char	**map;
+	char	**map_clone;
 	int		map_width;
 	int		map_height;
 }	t_map;
@@ -70,9 +71,10 @@ int		key_release(int keycode, t_game *game);
 void	map_put(t_game *game);
 char	**read_map(char *map_path);
 void	map_size(t_game *game);
-char	*check_map_validity(char *map_path, int x, int y, t_game *game);
+char	*check_map_validity(char *map_path, t_game *game);
 void	error_control(t_game *game, char *err_msg, void *ptr);
 void	array_free(char **arr);
 int		press_x(t_game *game);
+void	find_player_start(t_game *game);
 
 #endif

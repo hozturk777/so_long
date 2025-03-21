@@ -6,7 +6,7 @@
 /*   By: huozturk <huozturk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 14:55:52 by huozturk          #+#    #+#             */
-/*   Updated: 2025/03/20 17:45:46 by huozturk         ###   ########.fr       */
+/*   Updated: 2025/03/22 00:09:44 by huozturk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,8 @@ void	end_game(t_game *game, int status)
 	destroy_image(game);
 	if (game)
 		array_free(game->map.map);
+	if (game->map.map)
+		array_free(game->map.map_clone);
 	if (game && game->game_window)
 		mlx_destroy_window(game->game_init, game->game_window);
 	if (game && game->game_init)

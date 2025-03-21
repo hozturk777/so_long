@@ -6,7 +6,7 @@
 /*   By: huozturk <huozturk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 14:55:55 by huozturk          #+#    #+#             */
-/*   Updated: 2025/03/20 17:04:45 by huozturk         ###   ########.fr       */
+/*   Updated: 2025/03/22 00:17:34 by huozturk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ void	find_player_start(t_game *game)
 
 void	render_character_img(t_game *game)
 {
-	find_player_start(game);
 	mlx_put_image_to_window(game->game_init, game->game_window,
 		game->player_img,
 		game->player_x,
@@ -76,6 +75,8 @@ int	*new_image(t_game *game)
 			"img/map/Floor48x48.xpm", &x, &y);
 	game->key_img = mlx_xpm_file_to_image(game->game_init,
 			"img/collect/key48x48.xpm", &x, &y);
+	game->exit_img = mlx_xpm_file_to_image(game->game_init,
+			"img/map/portal48.xpm", &x, &y);
 	if (!game->player_img
 		|| !game->wall_img
 		|| !game->floor_img
