@@ -1,3 +1,4 @@
+MAKEFLAGS 			+= --no-print-directory
 NAME				= so_long
 LIBFT				= ./lib/libft/libft.a
 MINILIBX			= ./lib/minilibx-linux/libmlx_Linux.a
@@ -9,12 +10,12 @@ CC					= cc
 CFLAGS				= -Wall -Werror -Wextra
 RM					= rm -rf
 
-SO_LONG_DIR			= $(SRC_DIR)so_long.c \
-				 		$(SRC_DIR)game_init.c \
-				 		$(SRC_DIR)player_controller.c \
-				 		$(SRC_DIR)map/read_map.c \
-				 		$(SRC_DIR)map/map_render.c \
-				 		$(SRC_DIR)map/map_check.c \
+SO_LONG_DIR			=	$(SRC_DIR)so_long.c \
+						$(SRC_DIR)game_init.c \
+						$(SRC_DIR)player_controller.c \
+						$(SRC_DIR)map/read_map.c \
+						$(SRC_DIR)map/map_render.c \
+						$(SRC_DIR)map/map_check.c \
 						$(SRC_DIR)error/errors_handle.c \
 						$(GET_DIR)get_next_line.c \
 						$(GET_DIR)get_next_line_utils.c 
@@ -23,10 +24,16 @@ SRCS 				= $(SO_LONG_DIR)
 
 OBJ 				= $(patsubst $(SO_LONG_DIR)%.c,$(OBJ_DIR)%.o,$(SRCS))
 
+COLOR_YELLOW	=	\033[0;33m \033[1m
+COLOR_GREEN		=	\033[0;32m \033[1m
+COLOR_RED		=	\033[0;31m \033[1m
+COLOR_END		=	\033[0m
+
 all: 				$(NAME)
 
 $(NAME): 			$(OBJ) $(LIBFT) $(MINILIBX) $(PRINTF)
 					@$(CC) $(CFLAGS) $(OBJ) $(LIBFT) $(PRINTF) -g -Lmlx -lmlx -Llib/minilibx-linux -Imlx_linux -lXext -lX11 -lm -lz  -o $(NAME)
+					@echo "\n\e[1m$(COLOR_YELLOW)$(NAME)	$(COLOR_GREEN)[is ready!]\e[0m\n$(COLOR_END)"
 
 $(LIBFT):
 					@make -C ./lib/libft
@@ -46,11 +53,13 @@ clean:
 					@make clean -C ./lib/libft
 					@make clean -C ./lib/minilibx-linux
 					@make clean -C ./lib/ft_printf
+					@echo "\n\e[1m$(COLOR_YELLOW)objects	$(COLOR_RED)[are deleted!]\e[0m$(COLOR_END)"
 
 fclean: 			clean
 					@$(RM) $(NAME)
 					@$(RM) $(LIBFT)
 					@$(RM) $(PRINTF)
+					@echo "\e[1m$(COLOR_YELLOW)$(NAME)	$(COLOR_RED)[is deleted!]\e[0m\n$(COLOR_END)"
 
 re: 				fclean all
 
