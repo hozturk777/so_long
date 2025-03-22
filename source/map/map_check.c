@@ -6,7 +6,7 @@
 /*   By: huozturk <huozturk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 14:59:14 by huozturk          #+#    #+#             */
-/*   Updated: 2025/03/22 15:39:09 by huozturk         ###   ########.fr       */
+/*   Updated: 2025/03/22 16:51:18 by huozturk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static void	wall_control(t_game *game, int x, int y)
 	return ;
 }
 
-void	flood_file(char **map, int x, int y, t_counts *counts)
+void	flood_fill(char **map, int x, int y, t_counts *counts)
 {
 	if (x < 0 || y < 0 || !map[y] || !map[y][x])
 		return ;
@@ -63,10 +63,10 @@ void	flood_file(char **map, int x, int y, t_counts *counts)
 	else if (map[y][x] == 'C')
 		counts->c_count++;
 	map[y][x] = 'F';
-	flood_file(map, x - 1, y, counts);
-	flood_file(map, x + 1, y, counts);
-	flood_file(map, x, y - 1, counts);
-	flood_file(map, x, y + 1, counts);
+	flood_fill(map, x - 1, y, counts);
+	flood_fill(map, x + 1, y, counts);
+	flood_fill(map, x, y - 1, counts);
+	flood_fill(map, x, y + 1, counts);
 }
 
 int	check_remaining_elements(char **map_clone, t_game *game)
@@ -103,8 +103,9 @@ char	*check_map_validity(char *map_path, t_game *game)
 	game->map.map_clone = read_map(map_path, game);
 	if (!game->map.map_clone)
 		return ("allocation fail");
-	flood_file(game->map.map_clone,
-		game->player_height / 48,
+	ft_printf("x: %d - y: %d\n", game->player_x, game->player_y);
+	flood_fill(game->map.map_clone,
+		game->player_x / 48,
 		game->player_y / 48,
 		&counts);
 	if (counts.p_count != 1 || counts.e_count != 1 || counts.c_count <= 0)

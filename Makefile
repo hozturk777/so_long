@@ -26,7 +26,7 @@ OBJ 				= $(patsubst $(SO_LONG_DIR)%.c,$(OBJ_DIR)%.o,$(SRCS))
 all: 				$(NAME)
 
 $(NAME): 			$(OBJ) $(LIBFT) $(MINILIBX) $(PRINTF)
-					$(CC) $(CFLAGS) $(OBJ) $(LIBFT) $(PRINTF) -g -Lmlx -lmlx -Llib/minilibx-linux -Imlx_linux -lXext -lX11 -lm -lz  -o $(NAME)
+					@$(CC) $(CFLAGS) $(OBJ) $(LIBFT) $(PRINTF) -g -Lmlx -lmlx -Llib/minilibx-linux -Imlx_linux -lXext -lX11 -lm -lz  -o $(NAME)
 
 $(LIBFT):
 					@make -C ./lib/libft
