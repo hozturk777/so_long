@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: huozturk <huozturk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hsyn <hsyn@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 15:40:57 by huozturk          #+#    #+#             */
-/*   Updated: 2024/12/12 16:31:40 by huozturk         ###   ########.fr       */
+/*   Updated: 2025/03/22 23:53:21 by hsyn             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static int	ft_pointeridentifier(const char	*format, unsigned long num)
 		if (ft_putstr("(nil)") == -1)
 			return (-1);
 		temp += 5;
-	}	
+	}
 	else
 	{
 		if (ft_putstr("0x") == -1)

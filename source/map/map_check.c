@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_check.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: huozturk <huozturk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hsyn <hsyn@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 14:59:14 by huozturk          #+#    #+#             */
-/*   Updated: 2025/03/22 16:51:18 by huozturk         ###   ########.fr       */
+/*   Updated: 2025/03/23 00:58:11 by hsyn             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,6 @@ char	*check_map_validity(char *map_path, t_game *game)
 	game->map.map_clone = read_map(map_path, game);
 	if (!game->map.map_clone)
 		return ("allocation fail");
-	ft_printf("x: %d - y: %d\n", game->player_x, game->player_y);
 	flood_fill(game->map.map_clone,
 		game->player_x / 48,
 		game->player_y / 48,
