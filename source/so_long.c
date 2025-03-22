@@ -6,7 +6,7 @@
 /*   By: huozturk <huozturk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 14:55:44 by huozturk          #+#    #+#             */
-/*   Updated: 2025/03/21 23:55:02 by huozturk         ###   ########.fr       */
+/*   Updated: 2025/03/22 15:29:58 by huozturk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	main(int ac, char **av)
 	error_control(game, "allocation fail", game);
 	game_start(game);
 	new_image(game);
-	game->map.map = read_map(av[1]);
+	game->map.map = read_map(av[1], game);
 	error_control(game, "allocation map", game->map.map);
 	map_size(game);
 	err_msg = check_map_validity(av[1], game);

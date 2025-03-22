@@ -6,7 +6,7 @@
 /*   By: huozturk <huozturk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 14:56:02 by huozturk          #+#    #+#             */
-/*   Updated: 2025/03/20 17:45:21 by huozturk         ###   ########.fr       */
+/*   Updated: 2025/03/22 11:06:41 by huozturk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,9 @@ int	key_press(int keycode, t_game *game)
 	if (game->map.map[last_y / TILE_SIZE][last_x / TILE_SIZE] != 'E')
 		mlx_put_image_to_window(game->game_init, game->game_window,
 			game->floor_img, last_x, last_y);
+	if (game->map.map[last_y / TILE_SIZE][last_x / TILE_SIZE] == 'E')
+		mlx_put_image_to_window(game->game_init, game->game_window,
+			game->exit_img, last_x, last_y);
 	mlx_put_image_to_window(game->game_init, game->game_window,
 		game->player_img, game->player_x, game->player_y);
 	return (0);

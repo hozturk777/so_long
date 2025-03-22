@@ -6,7 +6,7 @@
 /*   By: huozturk <huozturk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 14:59:21 by huozturk          #+#    #+#             */
-/*   Updated: 2025/03/22 00:17:00 by huozturk         ###   ########.fr       */
+/*   Updated: 2025/03/22 14:20:02 by huozturk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,29 @@
 static void	put_image(t_game *game, void *img, int x, int y)
 {
 	mlx_put_image_to_window(game->game_init, game->game_window, img, x, y);
+}
+
+void	check_invalid_format(t_game *game)
+{
+	int	x;
+	int	y;
+	int	tmp;
+
+	y = 0;
+	tmp = 0;
+	while (game->map.map[y])
+	{
+		x = 0;
+		while (game->map.map[y][x])
+		{
+			tmp = game->map.map[y][x];
+			if (tmp != 'P' && tmp != 'E' && tmp != 'C'
+				&& tmp != '0' && tmp != '1')
+				error_control(game, "Map invalid parameter", NULL);
+			x++;
+		}
+		y++;
+	}
 }
 
 void	map_put(t_game *game)

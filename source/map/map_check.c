@@ -6,7 +6,7 @@
 /*   By: huozturk <huozturk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 14:59:14 by huozturk          #+#    #+#             */
-/*   Updated: 2025/03/22 01:32:01 by huozturk         ###   ########.fr       */
+/*   Updated: 2025/03/22 15:39:09 by huozturk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ char	*check_map_validity(char *map_path, t_game *game)
 	counts.p_count = 0;
 	counts.e_count = 0;
 	find_player_start(game);
-	game->map.map_clone = read_map(map_path);
+	game->map.map_clone = read_map(map_path, game);
 	if (!game->map.map_clone)
 		return ("allocation fail");
 	flood_file(game->map.map_clone,
@@ -108,8 +108,8 @@ char	*check_map_validity(char *map_path, t_game *game)
 		game->player_y / 48,
 		&counts);
 	if (counts.p_count != 1 || counts.e_count != 1 || counts.c_count <= 0)
-		return (array_free(game->map.map_clone), "wrong number of arguments");
+		error_control(game, "wrong number of arguments", NULL);
 	if (!check_remaining_elements(game->map.map_clone, game))
-		return (array_free(game->map.map_clone), "unreachable object");
+		error_control(game, "wrong number of arguments", NULL);
 	return (NULL);
 }
