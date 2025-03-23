@@ -6,7 +6,7 @@
 /*   By: huozturk <huozturk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 14:55:55 by huozturk          #+#    #+#             */
-/*   Updated: 2025/03/22 11:51:59 by huozturk         ###   ########.fr       */
+/*   Updated: 2025/03/23 12:33:04 by huozturk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	game_open_window(t_game *game)
 	i = game->map.map_width * TILE_SIZE;
 	j = game->map.map_height * TILE_SIZE;
 	check_invalid_format(game);
-	game->game_window = mlx_new_window(game->game_init, i, j, "Maze Of Keys");
+	game->game_window = mlx_new_window(game->game_init, i, j, "So Long");
 	error_control(game, "cant open window", game->game_window);
 }
 
