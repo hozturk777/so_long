@@ -6,7 +6,7 @@
 /*   By: hsyn <hsyn@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 14:59:14 by huozturk          #+#    #+#             */
-/*   Updated: 2025/03/23 00:58:11 by hsyn             ###   ########.fr       */
+/*   Updated: 2025/03/25 17:06:41 by hsyn             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static void	wall_control(t_game *game, int x, int y)
 	return ;
 }
 
-void	flood_fill(char **map, int x, int y, t_counts *counts)
+static void	flood_fill(char **map, int x, int y, t_counts *counts)
 {
 	if (x < 0 || y < 0 || !map[y] || !map[y][x])
 		return ;
@@ -69,7 +69,7 @@ void	flood_fill(char **map, int x, int y, t_counts *counts)
 	flood_fill(map, x, y + 1, counts);
 }
 
-int	check_remaining_elements(char **map_clone, t_game *game)
+static int	check_remaining_elements(char **map_clone, t_game *game)
 {
 	int	x;
 	int	y;

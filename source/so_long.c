@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: huozturk <huozturk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hsyn <hsyn@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 14:55:44 by huozturk          #+#    #+#             */
-/*   Updated: 2025/03/23 12:39:57 by huozturk         ###   ########.fr       */
+/*   Updated: 2025/03/25 17:05:49 by hsyn             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "../lib/minilibx-linux/mlx.h"
 #include <stdlib.h>
 
-int	extension_control(char *av_path)
+static int	extension_control(char *av_path)
 {
 	char	*check;
 

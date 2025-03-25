@@ -6,14 +6,14 @@
 /*   By: hsyn <hsyn@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 14:56:02 by huozturk          #+#    #+#             */
-/*   Updated: 2025/03/25 17:01:00 by hsyn             ###   ########.fr       */
+/*   Updated: 2025/03/25 17:07:59 by hsyn             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 #include "../lib/minilibx-linux/mlx.h"
 
-void	key_press_control(int *next_x, int *next_y, int keycode)
+static void	key_press_control(int *next_x, int *next_y, int keycode)
 {
 	if (keycode == KEY_W)
 		*next_y -= TILE_SIZE;
