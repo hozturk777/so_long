@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: huozturk <huozturk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hsyn <hsyn@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 14:56:30 by huozturk          #+#    #+#             */
-/*   Updated: 2025/03/22 15:38:55 by huozturk         ###   ########.fr       */
+/*   Updated: 2025/03/25 16:56:02 by hsyn             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ typedef struct s_counts
 	int	e_count;
 	int	p_count;
 	int	c_count;
-	int	c_count_main;
 }	t_counts;
 
 typedef struct s_map
@@ -52,9 +51,6 @@ typedef struct s_game
 	int			step_count;
 	int			key_count;
 	int			p_keys;
-	int			exit_x;
-	int			exit_y;
-	int			exit_unlocked;
 	void		*player_img;
 	void		*wall_img;
 	void		*floor_img;

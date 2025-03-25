@@ -44,9 +44,9 @@ $(PRINTF):
 $(MINILIBX):
 					@make -C ./lib/minilibx-linux
 
-$(OBJ_DIR)%.o:		$(SRC_DIR)%.c
-					@mkdir -p $(@D)
-					@$(CC) -Imlx $(INC) -c $< -o $@
+#$(OBJ_DIR)%.o:		$(SRC_DIR)%.c			// BURASI OLMAYACAK
+#					@mkdir -p $(@D)
+#					@$(CC) -Imlx $(INC) -c $< -o $@
 
 clean:
 					@$(RM) -r $(OBJ_DIR)
