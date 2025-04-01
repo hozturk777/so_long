@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_init.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: huozturk <huozturk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hsyn <hsyn@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 14:55:55 by huozturk          #+#    #+#             */
-/*   Updated: 2025/03/23 12:33:04 by huozturk         ###   ########.fr       */
+/*   Updated: 2025/04/01 13:58:44 by hsyn             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	render_character_img(t_game *game)
 		game->player_y);
 }
 
-int	*new_image(t_game *game)
+int	*new_image(t_game *game)	// Struct yapımızın içindeki değişkenlere xpm_file fonksiyonu ile görsellerin xpm formatlı konumunu atıyoruz
 {
 	int	x;
 	int	y;
@@ -82,6 +82,6 @@ int	*new_image(t_game *game)
 		|| !game->wall_img
 		|| !game->floor_img
 		|| !game->key_img)
-		error_control(game, "img open failed", NULL);
+		error_control(game, "img open failed", NULL);	// Herhangi biri atılamadıysa hata dönüp oyunu kapatıyoruz
 	return (0);
 }

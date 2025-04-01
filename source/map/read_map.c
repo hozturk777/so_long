@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: huozturk <huozturk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hsyn <hsyn@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 14:59:24 by huozturk          #+#    #+#             */
-/*   Updated: 2025/03/22 15:40:17 by huozturk         ###   ########.fr       */
+/*   Updated: 2025/04/01 14:03:40 by hsyn             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,12 @@ static int	check_height(char **map, int f_len)
 
 	y = 0;
 	len = 0;
-	while (map && map[y])
+	while (map && map[y])	// Map'in yüksekliğini alıyoruz splitten sonra
 	{
 		len++;
 		y++;
 	}
-	if (f_len != len)
+	if (f_len != len)	// Get next line'dan gelen değer ile splitten sonra gelen map'in yüksekliğini karşılaştırıyoruz
 	{
 		array_free(map);
 		return (1);
@@ -56,7 +56,7 @@ static char	*read_map_utilty(int fd, int *height_len)
 
 	joined_map = NULL;
 	line = get_next_line(fd);
-	while (line)
+	while (line)	// next line burada map ortasında ki  boşluklar dahil alıyor
 	{
 		*height_len += 1;
 		temp = joined_map;
@@ -69,7 +69,7 @@ static char	*read_map_utilty(int fd, int *height_len)
 	return (joined_map);
 }
 
-char	**read_map(char *map_path, t_game *game)
+char	**read_map(char *map_path, t_game *game)	// Map'i get_next_line ile okuyup split ile \n ler kadar çift boyutlu diziye atıyoruz
 {
 	int		fd;
 	char	**map;
@@ -80,12 +80,12 @@ char	**read_map(char *map_path, t_game *game)
 	fd = open_file(map_path);
 	if (fd <= 0)
 		return (NULL);
-	joined_map = read_map_utilty(fd, &len);
+	joined_map = read_map_utilty(fd, &len);	// len ile map yüksekliğini alıcaz
 	close(fd);
 	if (!joined_map)
 		return (NULL);
-	map = ft_split(joined_map, '\n');
-	if (check_height(map, len))
+	map = ft_split(joined_map, '\n');	// split map ortasında ki boşlukları atlayıp alıyor bu yüzden altta yükseklik karşılaştırıcaz
+	if (check_height(map, len))	// Burada read_map_utility'den gelen leni gönderiyoruz map arasında boşlukları checklemek için
 	{
 		free(joined_map);
 		error_control(game, "There is a gap", NULL);

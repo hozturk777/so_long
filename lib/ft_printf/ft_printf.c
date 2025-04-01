@@ -6,79 +6,71 @@
 /*   By: hsyn <hsyn@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 15:40:57 by huozturk          #+#    #+#             */
-/*   Updated: 2025/03/22 23:53:21 by hsyn             ###   ########.fr       */
+/*   Updated: 2024/11/23 16:33:38 by hsyn             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include <stdio.h>
 #include <stdarg.h>
-#include <unistd.h>
 
-int	ft_putchar(char c)
+static int is_valid_format(char c)
 {
-	return (write(1, &c, 1));
+    return (c == 'p');
 }
 
-static int	ft_pointeridentifier(const char	*format, unsigned long num)
+static void ft_identifier(const char *format, va_list args, int *temp)
 {
-	int	temp;
-
-	temp = 0;
-	if (num == 0)
-	{
-		if (ft_putstr("(nil)") == -1)
-			return (-1);
-		temp += 5;
-	}
-	else
-	{
-		if (ft_putstr("0x") == -1)
-			return (-1);
-		temp += ft_putnbr(0, num, *format, 16) + 2;
-	}
-	return (temp);
-}
-
-static void	ft_identifier(const char *format, va_list args, int *temp)
-{
+	const char	*dec;
+	
+	dec = "0123456789";
 	if (*format == '%')
-		*temp += ft_putchar('%');
-	else if ((*format == 'd' || *format == 'i'))
-		*temp += ft_putnbr(va_arg(args, int), 0, *format, 10);
-	else if (*format == 'c')
-		*temp += ft_putchar(va_arg(args, int));
-	else if (*format == 's')
-		*temp += ft_putstr(va_arg(args, char *));
+        *temp += ft_putchar('%');
+    else if ((*format == 'd' || *format == 'i'))
+        *temp += ft_putnbr(va_arg(args, int), *format, dec);
+    else if (*format == 'c')
+        *temp += ft_putchar(va_arg(args, int));
+    else if (*format == 's')
+        *temp += ft_putstr(va_arg(args, char *));
 	else if (*format == 'u')
-		*temp += ft_putnbr(va_arg(args, unsigned int), 0,*format, 10);
+        *temp += ft_putnbr(va_arg(args, unsigned int), *format, dec);
 	else if (*format == 'x' || *format == 'X' )
-		*temp += ft_putnbr(va_arg(args, unsigned int), 0, *format, 16);
+        *temp += ft_putnbr(va_arg(args, unsigned int), *format, "0123456789ABCDEF");
 	else if (*format == 'p')
-		*temp += ft_pointeridentifier(format, va_arg(args, unsigned long));
-	else
-		*temp = -1;
+	{
+		unsigned long num = va_arg(args, unsigned long);
+        if (num)
+            *temp +=ft_putstr("0x"), *temp += ft_putnbrutility(num, *format, "0123456789ABCDEF");
+        else
+            *temp += ft_putstr("(nil)");
+	}
 }
 
 int	ft_printf(const char *format, ...)
 {
 	va_list	args;
-	int		value;
-	int		temp;
-
-	if (!format)
-		return (-1);
+	int	value;
+	int temp;
 	va_start(args, format);
+	
 	value = 0;
 	while (*format)
 	{
 		temp = 0;
 		if (*format == '%')
-			ft_identifier(++format, args, &temp);
+		{
+			format++;
+            while (*format == ' ' && format++)
+                if(is_valid_format(*(format+1)))
+					temp += ft_putchar(' ');
+            ft_identifier(format, args, &temp);
+		}
 		else
 			temp += ft_putchar(*format);
-		if (format++ && temp == -1)
-			return (va_end(args), -1);
+		format++;
+		if (temp == -1)
+			return (-1);
 		value += temp;
 	}
-	return (va_end(args), value);
+	return (value);
 }

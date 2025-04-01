@@ -6,7 +6,7 @@
 /*   By: hsyn <hsyn@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 14:59:14 by huozturk          #+#    #+#             */
-/*   Updated: 2025/03/25 17:06:41 by hsyn             ###   ########.fr       */
+/*   Updated: 2025/04/01 14:13:03 by hsyn             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	map_size(t_game *game)
 	game->map.map_width = w;
 }
 
-static void	wall_control(t_game *game, int x, int y)
+static void	wall_control(t_game *game, int x, int y)	// Map'in çevresi duvar ile mi kaplı bakacak
 {
 	int	is_wall;
 
@@ -54,7 +54,7 @@ static void	flood_fill(char **map, int x, int y, t_counts *counts)
 {
 	if (x < 0 || y < 0 || !map[y] || !map[y][x])
 		return ;
-	if (map[y][x] == '1' || map[y][x] == 'F')
+	if (map[y][x] == '1' || map[y][x] == 'F')	//	Map'de duvar ve 'F' varsa recursive fonksiyonu durduracak
 		return ;
 	if (map[y][x] == 'P')
 		counts->p_count++;
@@ -62,7 +62,7 @@ static void	flood_fill(char **map, int x, int y, t_counts *counts)
 		counts->e_count++;
 	else if (map[y][x] == 'C')
 		counts->c_count++;
-	map[y][x] = 'F';
+	map[y][x] = 'F';	// Baktığı her yeri 'F' olarak değiştirecek ki baktığı yere tekrar tekrar bakıp sonsuz döngüye girmesin
 	flood_fill(map, x - 1, y, counts);
 	flood_fill(map, x + 1, y, counts);
 	flood_fill(map, x, y - 1, counts);
@@ -96,20 +96,20 @@ char	*check_map_validity(char *map_path, t_game *game)
 {
 	t_counts	counts;
 
-	counts.c_count = 0;
-	counts.p_count = 0;
-	counts.e_count = 0;
-	find_player_start(game);
-	game->map.map_clone = read_map(map_path, game);
+	counts.c_count = 0;	//	Collectleri sayıcaz
+	counts.p_count = 0;	//	Karakterleri sayıcaz(1 tane olmak zorunda)
+	counts.e_count = 0;	//	Exit sayıcaz(1 tane olmak zorunda)
+	find_player_start(game);	// Map'de karakterin başlangıç noktasını bulmak için
+	game->map.map_clone = read_map(map_path, game);	// Struct yapımız'da map_clone oluşturuyoruz çünkü flood_file da içeriğini değiştirerek kontrol ediyoruz
 	if (!game->map.map_clone)
 		return ("allocation fail");
-	flood_fill(game->map.map_clone,
+	flood_fill(game->map.map_clone,	// Flood_file'ı karakterin başlangıç noktasından başlatıyorum (/ 48 sebebi TILE_SIZE'a bölüp indeks numarasını bulabilmek için)
 		game->player_x / 48,
 		game->player_y / 48,
 		&counts);
-	if (counts.p_count != 1 || counts.e_count != 1 || counts.c_count <= 0)
+	if (counts.p_count != 1 || counts.e_count != 1 || counts.c_count <= 0)	// Count check
 		error_control(game, "wrong number of arguments", NULL);
-	if (!check_remaining_elements(game->map.map_clone, game))
+	if (!check_remaining_elements(game->map.map_clone, game))	// Flood_file'dan sonra map'de 'C' || 'E' || 'P' hala varsa hata dönecek
 		error_control(game, "wrong number of arguments", NULL);
 	return (NULL);
 }
