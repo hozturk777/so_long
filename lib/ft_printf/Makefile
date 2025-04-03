@@ -1,5 +1,6 @@
 NAME = libftprintf.a
 CFLAGS = -Wall -Wextra -Werror
+CC = @cc
 
 SRC = ft_printf.c \
 		ft_printfutility.c \
@@ -9,15 +10,15 @@ OBJ = $(SRC:.c=.o)
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	ar rcs $(NAME) $(OBJ)
+	@ar rcs $(NAME) $(OBJ)
 
 $(OBJ) : ft_printf.h
 
 clean:
-	rm -rf $(OBJ)
+	@rm -rf $(OBJ)
 
 fclean: clean
-	rm -rf $(NAME)
+	@rm -rf $(NAME)
 
 re: fclean all
 
